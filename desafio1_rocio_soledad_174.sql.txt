@@ -1,0 +1,40 @@
+-- 1. Comienza a grabar
+-- 2. Entra al terminal
+-- 3. Ingresa al cliente de postgreSQL desde el terminal
+-- 4. Crea una base de datos llamada desafio-tuNombre-tuApellido-3digitos (2 Puntos)
+-- a. Ejemplo: desafio-Camila-Fernandez-931
+-- 5. Ingresa a la base de datos creada (1 Puntos)
+
+
+
+CREATE DATABASE desafio1_rocio_soledad_174
+-- \C desafio1_rocio_soledad_174
+
+-- 6. Crea una tabla llamada clientes, con una columna llamada email de tipo varchar(50),
+-- una columna llamada nombre de tipo varchar sin limitación, una columna llamada
+-- teléfono de tipo varchar(16), un campo llamado empresa de tipo varchar(50) y una
+-- columna de tipo smallint, para indicar la prioridad del cliente. Ahí se debe ingresar un
+-- valor entre 1 y 10, donde 10 es más prioritario. (2 Puntos)
+-- Hint: No hay que limitar el valor de la columna de prioridad, como tipo de dato se
+-- recomienda ocupar smallint.
+CREATE TABLE customer(id SERIAL PRIMARY KEY, email varchar(50), name varchar, phone varchar(16), company varchar(50), priority SMALLINT NOT NULL CHECK (priority >= 1 AND priority <= 10));
+
+
+-- 7. Ingresa 5 clientes distintos con distintas prioridades, el resto de los valores los
+-- puedes inventar. (1 Puntos)
+INSERT INTO customer(email, name, phone, company, priority)
+VALUES
+('rafael@gmail.com', 'Rafael', '111111', 'IBM', 21),  
+('leonardo@gmail.com', '', 'Leonardo', '222222', 'Globant', 20),  
+('donatello@gmail.com', 'Donatello', '333333', 'Microsoft', 19),  
+('jones@gmail.com', 'Jones', '444444', 'Oracle', 18),  
+('michel@gmail.com', '', 'Michel', '555555', 'Amazon', 17);
+
+
+-- 8. Selecciona los tres clientes de mayor prioridad. (2 Puntos)
+SELECT * FROM customer ORDER BY priority DESC, id ASC LIMIT 3;
+
+-- 9. Selecciona, de la tabla clientes, una prioridad o una empresa, de forma que el
+-- resultado devuelva 2 registros. (2 Puntos)
+SELECT * FROM customer WHERE priority =18 OR company= 'Oracle';
+
